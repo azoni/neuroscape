@@ -1,21 +1,26 @@
 {
   "name": "neuroscape",
   "version": "0.1.0",
-  "description": "Card database, deck builder, and collection manager for Neuroscape TCG",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "prepublishOnly": "npm run build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": ["neuroscape", "tcg", "card-game", "deck-builder", "cyberpunk"],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "next": "16.1.7",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "typescript": "^5.9.3"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
