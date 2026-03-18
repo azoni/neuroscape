@@ -5,16 +5,56 @@
   --color-neon-magenta: #ff00e5;
   --color-neon-green: #39ff14;
   --color-neon-yellow: #ffe600;
-  --color-dark-900: #0a0a0f;
-  --color-dark-800: #12121a;
-  --color-dark-700: #1a1a2e;
-  --color-dark-600: #25253d;
-  --color-dark-500: #33334d;
+  --color-neon-orange: #ff6b35;
+  --color-dark-950: #06060b;
+  --color-dark-900: #0a0a12;
+  --color-dark-800: #111119;
+  --color-dark-700: #191924;
+  --color-dark-600: #222233;
+  --color-dark-500: #2d2d44;
+  --color-dark-400: #3d3d55;
+  --color-surface: #13131d;
+  --color-surface-hover: #1a1a28;
+  --color-border: #2a2a3e;
+  --color-border-hover: #3a3a55;
+  --color-muted: #7a7a99;
+  --color-dim: #55556e;
+
+  --font-display: "Rajdhani", "Geist Sans", system-ui, sans-serif;
+}
+
+@font-face {
+  font-family: "Rajdhani";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
 }
 
 body {
-  background: var(--color-dark-900);
-  color: #e0e0e0;
+  background: var(--color-dark-950);
+  color: #d0d0e0;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Noise texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Subtle radial glow */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 240, 255, 0.04), transparent);
+  pointer-events: none;
 }
 
 ::selection {
@@ -22,13 +62,60 @@ body {
   color: white;
 }
 
+/* Gold/cyan text glow for headings */
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+}
+.text-glow-magenta {
+  text-shadow: 0 0 10px rgba(255, 0, 229, 0.3), 0 0 40px rgba(255, 0, 229, 0.1);
+}
+
+/* Card hover glow */
+.card-glow {
+  transition: all 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 240, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Smooth scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-dark-800);
+  background: var(--color-dark-900);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-dark-500);
-  border-radius: 4px;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dark-400);
+}
+
+/* Stat number styling */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Cost curve bar */
+.cost-bar {
+  transition: height 0.3s ease;
+}
+
+/* Faction badge animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Card image hover zoom */
+.card-img-zoom {
+  transition: transform 0.3s ease;
+}
+.card-img-zoom:hover .card-img-inner {
+  transform: scale(1.03);
 }
